@@ -208,7 +208,7 @@ def reset():
 def load_messages():
     try:
         message_box = Messages()
-        messages = [message_box.message[mess] for mess in range(min(len(message_box.message),10))]
+        messages = [message_box.message[mess] for mess in range(min(len(message_box.message),100))]
 
         return render_template('admin.html',messages = messages)
     except Exception as e:
