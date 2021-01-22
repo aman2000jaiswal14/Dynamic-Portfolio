@@ -1,3 +1,3 @@
 {
-  "messages_list": []
+  "messages_list": [{"name":"Aman","email":"aman2000jaiswal14@gmail.com","content":"This is a Dynamic Backend Portfolio Project which can be handled by the user from a separate User Interface. If you want to a try for this project go for try now. First user have to signup to create a portfolio. After signup user directed to the login page. where user login with their credentials. After login user redirect to the Admin page where user can replace his name, about himself, add skill, remove skill, add project and remove project. User can also see the messages and feedback send by the visitors who visited his portfolio and give feedback (or message) to the user. User can also delete those messages."}]
 }
