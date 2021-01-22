@@ -237,8 +237,8 @@ class Messages:
 class TimeDate:
     def __init__(self):
         self.timedate = "2021-01-22 12:29:47.118432"
-        self.interval = timedelta(minutes =15)
-        self.timesub = 15
+        self.interval = timedelta(minutes =5)
+        self.timesub = 5
 
     def set_datetime(self):
         data = datetime.now()
