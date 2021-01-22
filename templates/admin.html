@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Admin</title>
+</head>
+<body>
+<div class="container-md" style=" margin-top:45px;" >
+<table>
+    <tr>
+        <td width = 60%>
+            <h3>
+   ADMIN PAGE
+</h3>
+        </td>
+        <td width = 10%>
+
+            <form action="/" method="POST">
+
+    <button type="submit" class="btn btn-primary">GO TO PORTFOLIO</button>
+
+                </form>
+
+</td>
+</tr>
+</table>
+
+<hr>
+
+
+<table width=100%>
+    <tr>
+        <td width = 40%>
+
+<div class="card text-dark bg-light mb-3" >
+  <div class="card-header">ADD/REMOVE PORTFOLIO CONTENT</div>
+  <div class="card-body">
+
+
+<form action="/correct1" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>Name</h5></label>
+     <input  type="text" class="form-control" id="name" name ="name" required = 'required'>
+    <button type="submit" class="btn btn-primary">REPLACE</button>
+</form>
+
+<hr>
+<form action="/add_resume" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>ADD RESUME LINK</h5></label>
+     <input  type="text" class="form-control" id="resume" name ="resume" required = 'required'>
+    <button type="submit" class="btn btn-primary">ADD</button>
+</form>
+
+<hr>
+<form action="/correct2" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>ABOUT</h5></label>
+
+    <textarea class="form-control" id="about" name="about" rows="4"></textarea>
+    <button type="submit" class="btn btn-primary">REPLACE</button>
+</form>
+
+<hr>
+
+<form action="/correct3" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>ADD SKILLS</h5></label>
+    <h5></h5>
+    <label for="exampleFormControlInput1" class="form-label">SKILL NAME</label>
+     <input  type="text" class="form-control" id="skill" name ="skill" required = 'required'>
+
+    <label for="exampleFormControlInput1" class="form-label">STAR</label>
+     <input  type="number" class="form-control" id="star" name ="star" required = 'required' min="1" max="5">
+    <button type="submit" class="btn btn-primary">ADD</button>
+</form>
+
+<hr>
+
+<form action="/correct4" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>REMOVE SKILL</h5></label>
+     <h5></h5>
+    <label for="exampleFormControlInput1" class="form-label">SKILL NAME</label>
+     <input  type="text" class="form-control" id="skill" name ="skill" required = 'required'>
+    <button type="submit" class="btn btn-primary">REMOVE</button>
+</form>
+
+<hr>
+
+<form action="/correct5" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>ADD PROJECT</h5></label>
+    <h5></h5>
+    <label for="exampleFormControlInput1" class="form-label">PROJECT TITLE</label>
+     <input  type="text" class="form-control" id="title" name ="title" required = 'required'>
+
+    <label for="exampleFormControlInput1" class="form-label">TECH STACK</label>
+     <input  type="text" class="form-control" id="tech_stack" name ="tech_stack">
+
+        <label for="exampleFormControlInput1" class="form-label">CONTENT</label>
+
+    <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+
+        <label for="exampleFormControlInput1" class="form-label">GITHUBLINK</label>
+     <input  type="text" class="form-control" id="github_link" name ="github_link">
+
+        <label for="exampleFormControlInput1" class="form-label">DEMO LINK</label>
+     <input  type="text" class="form-control" id="demo_link" name ="demo_link">
+
+
+    <button type="submit" class="btn btn-primary">ADD</button>
+</form>
+
+<hr>
+
+<form action="/correct6" method="POST">
+<div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><h5>REMOVE_PROJECT</h5></label>
+    <h5></h5>
+    <label for="exampleFormControlInput1" class="form-label">PROJECT TITLE</label>
+     <input  type="text" class="form-control" id="title" name ="title" required = 'required'>
+    <button type="submit" class="btn btn-primary">REMOVE</button>
+</form>
+
+
+      <hr>
+                         <form action="/reset" method="POST" >
+    <button type="submit" class="btn btn-primary" >RESET ALL</button>
+                </form>
+</div>
+       </td>
+
+        <td width = 60% align ='top'>
+
+            <div class="card text-dark bg-light mb-3" style="min-height: 100rem;">
+  <div class="card-header">Messages/Feedback</div>
+
+  <div class="card-body">
+
+      {% if messages %}
+        <form action="/del_messages" method="POST">
+      <button type="submit" class="btn btn-primary">DELETE MESSAGES</button>
+      </form>
+
+        {% for message in messages %}
+
+            <div class="card text-dark bg-info mb-3" ">
+  <div class="card-header">{{message["name"]}}
+
+
+  </div>
+  <div class="card-body">
+       <h5 class="card-title">
+        Email &nbsp;: &nbsp; {{message["email"]}}
+    </h5>
+      {% if message["content"] %}
+    <p class="card-text">{{message["content"]}}</p>
+      {% endif %}
+  </div>
+</div>
+
+                {% endfor %}
+                       {% else %}
+                <form action="/load_messages" method="POST">
+      <button type="submit" class="btn btn-primary">CHECK MESSAGES</button>
+      </form>
+                {% endif %}
+
+            </div>
+</div>
+        </td>
+    </tr>
+</table>
+
+</div>
+ <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+
+</body>
+</html>

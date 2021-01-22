@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>HOME-AMAN</title>
+  </head>
+  <body>
+    <div class=""  >
+
+<!--NAVBAR----------------------------------------------------------------------------- -->
+
+        <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+  <a class="navbar-brand" href="/"><H2><FONT color = "#552288">{{name}}</FONT></H2></a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#skills"><font color = "#77795F">SKILLS</font></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#projects"><font color = "#77795F">PROJECTS</font></a>
+    </li>
+
+    </li>
+        <li class="nav-item">
+      <a class="nav-link" href="#contactus"><font color = "#77795F">CONTACT US</font></a>
+    </li>
+      {% if user %}
+      <li class="nav-item">
+          <form action="/login" method="POST">
+               <button class="nav-link" type="submit" class="btn btn-primary"><font color = "#77795F">LOGIN</font></button>
+          </form>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
+
+        <!--NAVBAR----------------------------------------------------------------------------- -->
+
+
+<!--    table1----------------------------------------------------------------------------- -->
+
+<div class="container-md" style=" margin-top:45px;" >
+     <div class="card text-dark bg-light mb-3">
+
+  <div class="card-body">
+
+    <table class="table">
+  <tbody>
+    <tr>
+
+      <td>
+
+
+    <img src={{image}} class="rounded float-start"  width="300" height="300" alt="...">
+
+</div>
+      </td>
+      <td> <div style="margin-top:45px; margin-left:45px;">
+
+
+
+
+    <p>{{about}}</p>
+
+           <a href={{resume}} target="_blank" >
+              <button type="button" class="btn btn-success" style ="font-size: 15px;">RESUME</button>
+          </a>
+
+      <a class="" href="#contactus">
+          <button type="button" class="btn btn-success" style ="font-size: 15px;">HIRE ME</button>
+      </a>
+
+
+      </div>
+
+
+
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<!--    table1----------------------------------------------------------------------------- -->
+
+
+
+
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
+
+
+    <!--    SKILLS--------------------------------------------------------------------------------------  -->
+  {% if skills %}
+    <div class="card text-dark bg-light mb-3">
+  <div class="card-body">
+
+    <h4 id="skills">SKILLS</h4>
+
+
+<div class="row row-cols-1 row-cols-md-6 g-4 ">
+{% for skill in skills %}
+
+  <div class="col ">
+      <div class="card-body card text-white  mb-3" style="max-width: 10rem; min-height: 7rem; background-color: #2365E3;">
+        <h5 class="card-title">{{skill["skill"]}}</h5>
+        <p class="card-text">
+            {% for i in skill["star"] %}
+            <img src="static/images/star.svg" class="rounded float-start" width="20" height="20" alt="...">
+        {% endfor %}
+        </p>
+      </div>
+  </div>
+{% endfor %}
+
+  </div>
+<!--    <hr>-->
+        </div>
+</div>
+{% endif %}
+
+
+<!--    SKILLS--------------------------------------------------------------------------------------  -->
+
+
+<!--    PROJECT------------------------------------------------------------------------------------------   -->
+  {% if projects %}
+    <h4 id="projects">PROJECT</h4>
+{% for project in projects %}
+<div class="card text-dark bg-info mb-3" style="max-width: 180rem;">
+  <div class="card-header">{{project["title"]}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{project["tech_stack"]}}</h5>
+    <p class="card-text">{{project["content"]}}</p>
+      {%if project["github_link"] %}
+
+      <a href={{project["github_link"]}}  target="_blank" type="button" class="btn btn-success">GITHUB_REPO</a>
+      {%endif%}
+      {%if project["demo_link"] %}
+
+       <a href={{project["demo_link"]}}  target="_blank" type="button" class="btn btn-success">DEMO</a>
+      {%endif%}
+  </div>
+</div>
+    {% endfor %}
+
+</div>
+        <hr>
+{% endif %}
+<!--    PROJECT------------------------------------------------------------------------------------------   -->
+
+
+    <!--    CONTACT ------------------------------------------------------------------------------------------   -->
+<h4 id="contactus">CONTACT/FEEDBACK</h4>
+
+
+        <table class = "table">
+            <tr>
+                <td width = 20%><img src="static/images/messagebox.png" alt="..."></td>
+                <td width = 50%>
+                    <div class="card text-dark bg-light mb-3" >
+  <div class="card-header">TYPE YOUR MESSAGE/FEEDBACK</div>
+  <div class="card-body">
+
+  <form action="/mail" method = "POST">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+     <input  type="text" class="form-control" id="name" name ="name" required = 'required'>
+    <label for="exampleFormControlInput1" class="form-label">Email Id</label>
+     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required = 'required'>
+    </div>
+    <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Message/FeedBack </label>
+    <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+</div>
+        <button type="submit" class="btn btn-primary">SEND</button>
+    </form>
+                </td>
+
+                </div>
+</div>
+                <td width = 30%></td>
+            </tr>
+</table>
+    <!--    CONTACT ------------------------------------------------------------------------------------------   -->
+</div>
+
+    </div>
+
+
+
+
+<!--FOOTER-------------------------------------------------------------------- -->
+<footer >
+<div style=" margin-top:15px;background-color:#2B3131 " >
+<table class="table" style = "height: 100px;">
+    <tr>
+      <td width = 30%><p><font color = "white">Reset Session in {{timeleft}} minutes</font> </p> </td>
+        <td width = 40%></td>
+        <td width = 30%><div style="text-align: right; vertical-align:bottom;"> <font color = "white">
+
+            <p>Creater</p>
+            <a href="/" style="text-decoration: none; color:white;">@AMAN JAISWAL</a>
+            <p><a href="https://www.linkedin.com/in/aman-jaiswal-0513841a5/" style="text-decoration: none; color:white;">Linkedin</a></p>
+        </font></td>
+    </tr
+</table>
+
+    </div>
+
+    </footer>
+
+<!--FOOTER-------------------------------------------------------------------- -->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
